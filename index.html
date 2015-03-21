@@ -1,0 +1,129 @@
+<!DOCTYPE>
+
+<html>
+<head>
+	<title>NodeChat</title>
+	<script type="text/javascript" src="js/jq.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<!--
+	<script type="text/javascript" src="send.js"></script>
+	<script type="text/javascript" src="refresh.js"></script>
+	<script type="text/javascript" src="vigil.js"></script>
+	-->
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body  class="over-body" background="img/bli.jpg">
+
+		<div class="topBar">
+			<center> NodeChat</center>
+		</div>
+
+		<!---	<div class="noti">Abra Cadabra</div> -->
+
+<div id="wrapper">
+		<div class="chat-box">			
+
+
+				<div class="title-bar">
+						<span style="font-weight:bold">Welcome </span>
+				</div>
+
+				<div class="dummymb" id="dummymb"></div>
+				<div class="main-body" id="main-body">
+						<div class="content" id="content"> 
+
+						<!--
+							<div class="incoming">
+								User: qerqwrewrer
+							</div>	-->
+
+
+						</div>
+				</div>
+
+				
+				<div class="message-box">					
+					<form name="newMessage" class="newMessage" onsubmit="return false">
+								
+						<div class="left">
+							<textarea name="MessageTextBox" id="MessageTextBox" placeholder="Enter your message here...."></textarea>
+						</div>
+						<!--
+						<div class="right">
+							<textarea id="userid" placeholder="Username"></textarea>
+						</div>
+						-->
+					</form>
+				</div>
+		</div>
+
+		<div class="usdummy">
+			<center>
+			<span style="font-weight:bold; font-size:20px;">Pick your nick</span>
+			<div id="ermsg"></div>
+			<textarea id="unbox" placeholder="Username"></textarea>
+			</center>
+		</div>
+
+
+		<div class="user-stat">
+					<center>
+					<div class="users">
+				 		 <span style= " font-weight:bold; font-size:25px; color: #33A1DE;"> Users <br> </span>
+				 	</div>
+				 	</center>
+				 		  <!--
+				 		  <form name="signOut" action="logo.php" method="post">
+								<center> <input type="submit" id="signOut" name="sout" value="SIGN OUT" />  </center>
+						  </form>
+							-->
+					<div class="onlineUsers">
+							People Online
+					
+					</div>
+		</div>
+
+
+</div>
+
+	<script type="text/javascript">
+	//jQuery(function($){
+		/*
+	$(function( ){
+
+		var socket= io();
+
+		var $mForm= $('.newMessage');
+		//var $mBox= $('#MessageTextBox');
+		var $disp= $('#content');
+
+
+
+		$('#MessageTextBox').keypress(function(e) {
+   				 if(e.which == 13) {
+
+   				 	//socket.emit('send message',$mBox.val());
+
+   				 	//$mBox.val('');
+   				 	$disp.append('<div class="incoming">asdasfsffgfag</div>');
+
+    				}//if
+		});
+
+		socket.on('new message',function(data){
+
+			$disp.append('<div class="incoming">' +data+ '</div>');
+
+		});
+
+
+	});
+*/
+
+	</script>
+
+	</body>
+</html>
