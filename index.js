@@ -75,9 +75,22 @@ io.sockets.on('connection',function(socket){
 
     socket.on('sendMessage',function(message){
                 //alert(message);
-        io.sockets.emit('newMessage',message);
-        //console.log(message);
-        //socket.broadcast.emit('NewNessage',message);
+        var data=message.trim();
+        //io.sockets.emit('newMessage',message);
+
+        var newMsg=new Chat({msg: data,nick: socket.nick});
+
+        newMsg.save(function(err){
+            if(err){
+                throw err;
+            }
+
+            io.sockets.emit('newMessage',{msg: data, user: socket.nick});
+
+        });
+
+        
+        console.log(socket.nick +" says... "+message);
     });
 
     socket.on('disconnect',function(data){
