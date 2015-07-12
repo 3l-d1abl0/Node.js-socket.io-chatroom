@@ -40,14 +40,14 @@ app.get('*',function(req,res){
 
 io.sockets.on('connection',function(socket){
 
-        console.log('New Client Connected!!!');
+    console.log('New Client Connected!!!');
 
-        var q=Chat.find({});
+    var q=Chat.find({});
         q.sort('-time').limit(10).exec(function(err,data){
             if(err)
                 throw err;
             socket.emit('Oldies',data);
-        });
+    });
 
     socket.on('newUser',function(nick){
 
@@ -91,6 +91,7 @@ io.sockets.on('connection',function(socket){
 
         
         console.log(socket.nick +" says... "+message);
+        //socket.broadcast.emit('NewNessage',message);
     });
 
     socket.on('disconnect',function(data){
@@ -108,73 +109,6 @@ io.sockets.on('connection',function(socket){
     
 });
 
-
-
-
-
-/*
-app.get('/',function(req,res){
-	//res.sendFile(__dirname + '/index.html');
-
-	console.log(req.path);
-
-    fs.readFile('index.html',function (err, data){
-        if(!err)
-        {
-            res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
-            res.write(data);
-            res.end();
-        }
-        else
-        {
-            res.writeHead(400, {'Content-Type': 'text/html'});
-            res.end("index.html not found");
-        }
-    });
-});
-
-
-io.on('connection', function (socket) {
-
-    console.log('a user connected');
-
-    socket.on('send message',function(data){
-
-            io.emit('new message',data);
-            //socket.broadcast.emit('new message',data);
-    });
-
-});
-
-
-
-
-
-app.get("/css/*",function(req,res){
-	console.log("Request:" +req.url);
-	res.sendFile(__dirname + req.url);
-
-});
-
-app.get("/js/*",function(req,res){
-    console.log("Request:" +req.url);
-    res.sendFile(__dirname + req.url);
-
-});
-
-app.get("/img/*",function(req,res){
-	console.log("Request:" +req.url);
-	res.sendFile(__dirname + req.url);
-
-});
-
-app.get("*",function(req,res){
-    console.log("Request:" +req.url);
-    res.send('<center> <h1>What the..??? 404...!!</h1> </center>');
-
-});
-
-*/
 
 server.listen(8080, function(){
   console.log('listening on *: 8080');
