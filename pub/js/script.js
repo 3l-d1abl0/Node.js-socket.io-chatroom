@@ -47,7 +47,7 @@ $(document).ready(function(){
 		});
 	
 	socket.on('newMessage',function(message){
-			//alert(message);
+			
 			$(".audioDemo").trigger('play');
 			var msg= '<span style="color: #33A1DE">'+message.user+ ':</span>';
    				msg+='	<span style="color: #39FF14">'+message.msg+ '</span> ';
