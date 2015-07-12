@@ -82,12 +82,19 @@ input[type=email]{
 	float:left;
 	margin-left: 50px;
 }
+
 .incoming{
 	margin: 5px;
 	/*color: #FFFFFF;
 	color: #4D4DFF;
 	color: #39FF14;*/
 }
+.err{
+	
+	margin: 5px;
+	color: #FF0009;
+}
+
 .title-bar
 {	/* border: 1px dotted #000; 
 	background:#8585AD;*/
