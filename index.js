@@ -6,8 +6,29 @@ var server = http.Server(app);
 
 var io= require('socket.io').listen(server);
 var fs=require("fs");
+var mongoose=require('mongoose');
 
 var nicknames= [];
+
+mongoose.connect('mongodb://localhost/chat',function(err){
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log('Connected to MongoDB!');
+    }
+});
+
+//DataBase Schema
+var dbSchema= mongoose.Schema({
+    nick: String,
+    msg: String,
+    time: {type:Date, default: Date.now}
+});
+
+
+//DataBase Model
+var Chat = mongoose.model('Message',dbSchema);
 
 app.use(express.static(__dirname+'/pub'));
 
