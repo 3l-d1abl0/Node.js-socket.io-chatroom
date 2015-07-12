@@ -37,7 +37,7 @@ $(document).ready(function(){
    				 	else{
    				 		   				 		
    				 		socket.emit('sendMessage',$mBox.val().trim(),function(err){
-   				 			$cBox.append('<div class="incoming"> *** Failed :'+$mBox.val().trim()+' ***</div>');
+   				 			$cBox.append('<div class="err"> *** Failed :'+$mBox.val().trim()+' ***</div>');
    				 		});
    				 		
    				 		$mBox.val("");
