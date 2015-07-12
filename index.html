@@ -17,6 +17,10 @@
 
 <body  class="over-body" background="img/bli.jpg">
 
+		<audio class="audioDemo" controls preload="none"> 
+   			<!-- <source src="audio/peeb.mp3" type="audio/mpeg"> -->
+   			<source src="audio/strt.wav" type="audio/wav">
+   		</audio>
 		<div class="topBar">
 			<center> NodeChat</center>
 		</div>
@@ -90,38 +94,8 @@
 </div>
 
 	<script type="text/javascript">
-	//jQuery(function($){
-		/*
-	$(function( ){
 
-		var socket= io();
-
-		var $mForm= $('.newMessage');
-		//var $mBox= $('#MessageTextBox');
-		var $disp= $('#content');
-
-
-
-		$('#MessageTextBox').keypress(function(e) {
-   				 if(e.which == 13) {
-
-   				 	//socket.emit('send message',$mBox.val());
-
-   				 	//$mBox.val('');
-   				 	$disp.append('<div class="incoming">asdasfsffgfag</div>');
-
-    				}//if
-		});
-
-		socket.on('new message',function(data){
-
-			$disp.append('<div class="incoming">' +data+ '</div>');
-
-		});
-
-
-	});
-*/
+		$(".audioDemo").trigger('load');
 
 	</script>
 
