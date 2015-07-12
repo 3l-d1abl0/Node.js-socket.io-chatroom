@@ -2,12 +2,14 @@ var socket;
 $(document).ready(function(){
 
 	//socket= io.connect('http://localhost:8080');
+
 	socket = io();
+	
 	var $mBox=$('#MessageTextBox');
 	var $cBox=$('#content');
 	var $uname=$('#unbox');
 	var username;
-	//alert('Wohaa...!!');
+	
 
 	function showDown(nicks){
 		$('.dummymb').hide();	$('.main-body').show();
@@ -28,28 +30,53 @@ $(document).ready(function(){
 	$mBox.keypress(function(e) {
    				 if(e.which == 13) {
 
-   				 	if($mBox.val()==''){
+   				 	if($mBox.val().trim()==''){
+   				 		//alert('No Blanks');
    				 		return false;
    				 	}
+   				 	else{
+   				 		   				 		
+   				 		socket.emit('sendMessage',$mBox.val().trim(),function(err){
+   				 			$cBox.append('<div class="incoming"> *** Failed :'+$mBox.val().trim()+' ***</div>');
+   				 		});
+   				 		
+   				 		$mBox.val("");
+   				 	}
 
-   				 	var msg= '<span style="color: #33A1DE">'+username+ ':</span>';
-   				 		msg+='	<span style="color: #39FF14">'+$mBox.val()+ '</span> ';
-   				 	socket.emit('sendMessage',msg);
-   				 	//$cBox.append('<div class="incoming">'+txt+'</div>');
-   				 	$mBox.val('');
-
-    				}//if
+    			}//if
 		});
 	
 	socket.on('newMessage',function(message){
 			//alert(message);
-			$cBox.append('<div class="incoming">'+message+'</div>');
+			$(".audioDemo").trigger('play');
+			var msg= '<span style="color: #33A1DE">'+message.user+ ':</span>';
+   				msg+='	<span style="color: #39FF14">'+message.msg+ '</span> ';
+
+				$cBox.append('<div class="incoming">'+msg+'</div>');
+				$('#main-body').animate({
+					scrollTop: $cBox.height()
+				});
+
+				//starts playing
+				//$(".audioDemo").trigger('play');
+				//pause playing
+				//$(".audioDemo").trigger('pause');
+	});
+
+	socket.on('Oldies',function(data){
+			for(var i=data.length-1;i>=0;i--){
+				
+				var msg= '<span style="color: #33A1DE">'+data[i].nick+ ':</span>';
+   					msg+='	<span style="color: #39FF14">'+data[i].msg+ '</span> ';
+
+					$cBox.append('<div class="incoming">'+msg+'</div>');
+			}
 	});
 
 	$uname.keypress(function(e){
 			if(e.which==13){
 				//alert('pr');
-				username=$uname.val();
+				username=$uname.val().trim();
 				if(username==''){
 					$('#ermsg').html('Cannot be blank !');
 					return false;
@@ -71,19 +98,5 @@ $(document).ready(function(){
 
 	});
 
-	/*
-	socket.on('MyEvent',function(message){
-			alert(message);
-	});
 
-	$('#one').click(function(){
-    //Some code
-		$('#two').html("Hello <b>world</b>!");
-	});
-
-	$('#two').click(function(){
-    //Some code
-		$('#one').html("tytytyty!");
-	});
-	*/
 });
