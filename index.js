@@ -32,7 +32,7 @@ var Chat = mongoose.model('Message',dbSchema);
 
 app.use(express.static(__dirname+'/pub'));
 
-app.get('*',function(req,res){
+app.get('/',function(req,res){
 
     //res.redirect('default.html');
     res.sendFile(__dirname+'/index.html');
@@ -108,6 +108,14 @@ io.sockets.on('connection',function(socket){
     });
     
 });
+
+
+app.get("*",function(req,res){
+    console.log("Request:" +req.url);
+    res.send('<center> <h1>What the..404...?!?!?</h1> </center>');
+
+});
+
 
 
 server.listen(8080, function(){
