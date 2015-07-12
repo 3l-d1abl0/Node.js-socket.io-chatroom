@@ -40,7 +40,14 @@ app.get('*',function(req,res){
 
 io.sockets.on('connection',function(socket){
 
-    console.log('Client Connected!!!');
+        console.log('New Client Connected!!!');
+
+        var q=Chat.find({});
+        q.sort('-time').limit(10).exec(function(err,data){
+            if(err)
+                throw err;
+            socket.emit('Oldies',data);
+        });
 
     socket.on('newUser',function(nick){
 
